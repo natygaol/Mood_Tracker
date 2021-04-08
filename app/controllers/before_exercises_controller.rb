@@ -1,0 +1,3 @@
+class BeforeExercisesController < ApplicationController
+  
+end
