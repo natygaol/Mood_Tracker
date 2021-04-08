@@ -6,7 +6,7 @@ class UsersInfoController < ApplicationController
 
   def create
     @user_info = UserInfo.new(params[:first_name, :last_name, :age, :gender, :address, :phone_number, :previous_illness, :doctor])
-    if  @user_info.save
+    if @user_info.save
       flash[:success] = "Object successfully created"
       redirect_to root_path
     else
@@ -28,5 +28,4 @@ class UsersInfoController < ApplicationController
   def users_info_params
     params.require(:user_info).permit(:first_name, :last_name, :age, :gender, :address, :phone_number, :previous_illness,:doctor)
   end
- 
 end
