@@ -10,10 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_07_211722) do
+ActiveRecord::Schema.define(version: 2021_04_08_174909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "after_exercises", force: :cascade do |t|
+    t.text "input_before"
+    t.integer "anxiety_level"
+    t.integer "motivation_level"
+    t.string "mood_level"
+    t.integer "cardiac_frequency"
+    t.integer "respiratory_rate"
+    t.string "pain"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_after_exercises_on_user_id"
+  end
+
+  create_table "before_exercises", force: :cascade do |t|
+    t.text "input_before"
+    t.integer "anxiety_level"
+    t.integer "motivation_level"
+    t.string "mood_level"
+    t.integer "cardiac_frequency"
+    t.integer "respiratory_rate"
+    t.string "pain"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_before_exercises_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,4 +63,6 @@ ActiveRecord::Schema.define(version: 2021_04_07_211722) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "after_exercises", "users"
+  add_foreign_key "before_exercises", "users"
 end
