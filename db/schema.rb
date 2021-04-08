@@ -18,6 +18,20 @@ ActiveRecord::Schema.define(version: 2021_04_08_165243) do
   create_table "user_infos", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end 
+  
+  create_table "before_exercises", force: :cascade do |t|
+    t.text "input_before"
+    t.integer "anxiety_level"
+    t.integer "motivation_level"
+    t.string "mood_level"
+    t.integer "cardiac_frequency"
+    t.integer "respiratory_rate"
+    t.string "pain"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_before_exercises_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,4 +54,5 @@ ActiveRecord::Schema.define(version: 2021_04_08_165243) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "before_exercises", "users"
 end
