@@ -8,8 +8,8 @@ class BeforeExercisesController < ApplicationController
     @before_exercise = BeforeExercise.new(before_exercise_params)
     @before_exercise.user = current_user
     @before_exercise.sent = false # consultar bien si esta ligada a user o users_info
-    if @trip.save
-      redirect_to edit_trip_path(@trip)
+    if @before_exercise.save
+      redirect_to edit_trip_path(@before_exercise)
     else
       render :new
     end
