@@ -9,15 +9,10 @@ class AfterExercisesController < ApplicationController
     @after_exercise.user = current_user
     @after_exercise.sent = false # consultar bien si esta ligada a user o users_info
     if @after_exercise.save
-      redirect_to edit_trip_path(@after_exercise)
+      redirect_to new_after_exercise(@after_exercise)
     else
       render :new
     end
-  end
-
-  def show
-    @user = current_user
-    @after_exercise = AfterExercise.find(params[:id])
   end
 
 
