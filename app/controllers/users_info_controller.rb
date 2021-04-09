@@ -1,5 +1,14 @@
 class UsersInfoController < ApplicationController
 
+  
+  def index
+    @users_info = UserInfo.all
+  end
+
+  def show
+    @user_info = UserInfo.find(params[:id])
+  end
+
   def new
     @user_info = UserInfo.new
   end
@@ -14,15 +23,7 @@ class UsersInfoController < ApplicationController
       render :new
     end
   end
-
-  def show
-    @user_info = UserInfo.find(params[:id])
-  end
-
-  def index
-    @users_info = UserInfo.all
-  end
-
+  
   private
 
   def users_info_params

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users 
   root to: 'pages#home'
-  resources :users, only: [:new, :create, :show, :index] do
-    resources :before_exercises, only: [:new, :create, :show, :index] do
-    end
+   resources :user_info, only:  %i[index new create destroy]  do
+   resources :before_exercise, only:  %i[new create show]  
+   resources :after_exercise, only:  %i[new create show]  
   end
+
 end
 
