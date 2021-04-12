@@ -2,7 +2,8 @@
   <div>
     <h1>Patients</h1>
     <% @patients.each do |patient|%>
-    <h2><% patient.first_name %>, <% patient.last_name %></h2>
+    <h2><%= link_to "#{patient.first_name}, #{patient.last_name}", patients_path(patient) %></h2>
     <p> <% patient.age %></p>
+    <% end %>
   </div>
 </div>
