@@ -1,6 +1,7 @@
 class PatientsController < ApplicationController
   def index
-    @patients = Patient.where(doctor_id: @doctor.id)
+    @patients = Patient.all
+    # @patients = Patient.where(doctor_id: @doctor.id)
   end
 
   def show
