@@ -1,0 +1,16 @@
+
+<div class="container">
+  <div>
+      <%= simple_form_for @patient do |f| %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :age %>
+      <%= f.input :previous_illnes %>
+      <%= f.input :phone_number %>
+      <%= f.input :address %>
+      <%= f.input :doctor %>  
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+  <%= link_to "Go back", root_path, class: "btn btn-primary my-3" %>
+</div>
