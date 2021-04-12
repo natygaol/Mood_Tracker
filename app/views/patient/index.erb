@@ -1,0 +1,8 @@
+<div class="container">
+  <div>
+    <h1>Patients</h1>
+    <% @patients.each do |patient|%>
+    <h2><% patient.first_name %>, <% patient.last_name %></h2>
+    <p> <% patient.age %></p>
+  </div>
+</div>

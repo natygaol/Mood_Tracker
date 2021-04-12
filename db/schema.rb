@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 2021_04_12_105521) do
     t.index ["user_id"], name: "index_before_exercises_on_user_id"
   end
 
+  create_table "doctor_posts", force: :cascade do |t|
+    t.text "recomendation"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_doctor_posts_on_user_id"
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.text "first_name"
     t.text "last_name"
@@ -85,6 +93,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_105521) do
 
   add_foreign_key "after_exercises", "users"
   add_foreign_key "before_exercises", "users"
+  add_foreign_key "doctor_posts", "users"
   add_foreign_key "doctors", "users"
   add_foreign_key "patients", "doctors"
   add_foreign_key "patients", "users"
