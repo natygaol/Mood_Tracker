@@ -9,8 +9,8 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 2021_04_08_184729) do
 
+ActiveRecord::Schema.define(version: 2021_04_12_105521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,7 @@ ActiveRecord::Schema.define(version: 2021_04_08_184729) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_after_exercises_on_user_id"
   end
-  
-  create_table "user_infos", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end 
-  
+
   create_table "before_exercises", force: :cascade do |t|
     t.text "input_before"
     t.integer "anxiety_level"
@@ -48,17 +43,31 @@ ActiveRecord::Schema.define(version: 2021_04_08_184729) do
     t.index ["user_id"], name: "index_before_exercises_on_user_id"
   end
 
-  create_table "user_infos", force: :cascade do |t|
+  create_table "doctors", force: :cascade do |t|
+    t.text "first_name"
+    t.text "last_name"
+    t.text "specialty"
+    t.text "adrress"
+    t.text "phone_number"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.string "address"
-    t.string "age"
-    t.string "previous_illnesses"
-    t.string "specialty"
-    t.string "gender"
-    t.boolean "doctor"
+    t.index ["user_id"], name: "index_doctors_on_user_id"
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.text "first_name"
+    t.text "last_name"
+    t.integer "age"
+    t.text "previous_illness"
+    t.text "adrress"
+    t.text "phone_number"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "doctor_id", null: false
+    t.index ["doctor_id"], name: "index_patients_on_doctor_id"
+    t.index ["user_id"], name: "index_patients_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,10 +78,14 @@ ActiveRecord::Schema.define(version: 2021_04_08_184729) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "doctor", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "after_exercises", "users"
   add_foreign_key "before_exercises", "users"
+  add_foreign_key "doctors", "users"
+  add_foreign_key "patients", "doctors"
+  add_foreign_key "patients", "users"
 end
